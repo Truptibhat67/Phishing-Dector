@@ -7,6 +7,9 @@ import os
 import json
 from pathlib import Path
 from datetime import datetime
+import multiprocessing
+multiprocessing.freeze_support()
+
 
 app = FastAPI(title="Phishing URL Detector", version="1.0.0")
 
