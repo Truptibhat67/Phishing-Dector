@@ -1,4 +1,4 @@
- #Phishing URL Detector
+# Phishing URL Dector
 
 Full-stack app to detect phishing URLs with ML predictions.
 
@@ -6,11 +6,11 @@ Frontend: React
 Backend: FastAPI
 
 
-Prerequisites
+## Prerequisites
 - Node.js v16+ and npm
 - Python 3.9+ and pip
 
-##Steps to run the project locally
+## Steps to run the project locally
 
 Backend Setup
 
