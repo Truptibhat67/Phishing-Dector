@@ -2,8 +2,8 @@
 
 Full-stack app to detect phishing URLs with ML predictions.
 
-Frontend: React
-Backend: FastAPI
+- Frontend: React
+- Backend: FastAPI
 
 
 ## Prerequisites
@@ -12,7 +12,7 @@ Backend: FastAPI
 
 ## Steps to run the project locally
 
-Backend Setup
+### Backend Setup
 
 - Navigate to backend folder:
   cd backend
@@ -30,7 +30,7 @@ Backend Setup
 - Backend URL: http://localhost:8000
 
 
-Frontend Setup
+### Frontend Setup
 
 - Navigate to frontend folder:
   cd frontend
