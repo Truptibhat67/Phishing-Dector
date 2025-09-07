@@ -1,4 +1,4 @@
-# Phishing URL Dector
+# Phishing URL Detector
 
 Full-stack app to detect phishing URLs with ML predictions.
 
