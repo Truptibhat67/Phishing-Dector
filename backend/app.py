@@ -16,7 +16,7 @@ app = FastAPI(title="Phishing URL Detector", version="1.0.0")
 # 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["detectoeapp.netlify.app"],
+    allow_origins=["detectoeapp.netlify.app","*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
