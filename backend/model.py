@@ -85,11 +85,11 @@ class URLModel:
         proba = float(self.clf.predict_proba(X)[0,1])
         label = "phishing" if proba >= 0.5 else "legit"
 
-        # Explain with coefficient contributions (log-odds space)
+       
         coef = self.clf.coef_[0]
         intercept = self.clf.intercept_[0]
         contributions = [(name, float(val*coef[i])) for i,(name,val) in enumerate(zip(self.feature_names, X[0]))]
-        # Sort by absolute contribution to log-odds
+        
         top = sorted(
             [{"feature": n, "value": float(v), "logit_contribution": float(c)} for (n,c), v in zip(zip(self.feature_names, coef), X[0])],
             key=lambda d: abs(d["logit_contribution"]),
@@ -242,3 +242,6 @@ def train_or_load() -> URLModel:
 
 def ensure_model() -> URLModel:
     return train_or_load()
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
