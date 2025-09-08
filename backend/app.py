@@ -16,7 +16,7 @@ app = FastAPI(title="Phishing URL Detector", version="1.0.0")
 # 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "*"],
+    allow_origins=["detectoeapp.netlify.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -44,6 +44,10 @@ class PredictOut(BaseModel):
     pred_proba: float
     features: Dict[str, Any]
     top_contributors: List[Dict[str, Any]]
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
 @app.get("/health")
 def health():
