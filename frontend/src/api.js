@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = import.meta.env.VITE_API_URL|| 'http://localhost:8000'
+const BASE_URL = import.meta.env.VITE_API_URL|| 'https://phishing-detector-4-q04i.onrender.com'
 
 export async function predictURL(url) {
   const res = await axios.post(`${BASE_URL}/predict`, { url })
