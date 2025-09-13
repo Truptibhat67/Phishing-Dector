@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, Any, List
@@ -9,9 +9,6 @@ from pathlib import Path
 from datetime import datetime
 import multiprocessing
 multiprocessing.freeze_support()
-
-# In-memory user storage (for demo purposes)
-users: Dict[str, Dict[str, str]] = {}
 
 
 app = FastAPI(title="Phishing URL Detector", version="1.0.0")
@@ -48,15 +45,6 @@ class PredictOut(BaseModel):
     features: Dict[str, Any]
     top_contributors: List[Dict[str, Any]]
 
-class SignupRequest(BaseModel):
-    username: str
-    password: str
-    email: str
-
-class LoginRequest(BaseModel):
-    username: str
-    password: str
-
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -82,24 +70,3 @@ def predict(payload: PredictIn):
         m["legit"] += 1
     save_metrics(m)
     return PredictOut(**result)
-
-@app.post("/api/auth/signup")
-def signup(payload: SignupRequest):
-    if payload.username in users:
-        raise HTTPException(status_code=400, detail="Username already exists")
-    users[payload.username] = {
-        "password": payload.password,
-        "email": payload.email
-    }
-    return {"message": "User registered successfully"}
-
-@app.post("/api/auth/login")
-def login(payload: LoginRequest):
-    user = users.get(payload.username)
-    if not user or user["password"] != payload.password:
-        raise HTTPException(status_code=401, detail="Invalid username or password")
-    return {"message": "Login successful"}
-
-@app.post("/api/auth/logout")
-def logout():
-    return {"message": "Logout successful"}
